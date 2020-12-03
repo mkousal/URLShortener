@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% block title%}ShURL - Shorten your URLs with easy!{% endblock %}
 {% block content %}
 
-<h1>Short URL generator</h1>
+<div class="container d-flex justify-content-md-center">
+<h1>ShURL - Shorten your URLs with easy!</h1>
+</div>
 
-<form action="." method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" class="btn" value="Generate" />
-</form>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <form action="." method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-success btn-lg" value="Generate" />
+        </form>
+    </div>
+</div>
+
 
 {% endblock %}
