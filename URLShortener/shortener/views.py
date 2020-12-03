@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import LinkGenerateForm
-from .shorty import create_short_url
+from .shorty import generate_short_url
+from .models import URL
 
 # Create your views here.
 
@@ -8,8 +9,11 @@ def home_view(request):
     form = LinkGenerateForm(request.POST or None)
     if form.is_valid():
         long_url = form.cleaned_data['long_url']
-        create_short_url(long_url)
-        # form = LinkGenerateForm()
+        short_url = generate_short_url()
+        m = URL(short_url=short_url, long_url=long_url)
+        m.save()
+        form = LinkGenerateForm()
+        redirect('/')
     context = {
         'form' : form
     }
