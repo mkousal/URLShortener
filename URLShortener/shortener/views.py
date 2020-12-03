@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LinkGenerateForm
 from .shorty import generate_short_url
 from .models import URL
@@ -18,3 +18,9 @@ def home_view(request):
         'form' : form
     }
     return render(request, 'index.html', context)
+
+def redirector(request, short_url):
+    url = get_object_or_404(URL, short_url=short_url)
+    url.clicks += 1
+    url.save()
+    return redirect(url.long_url)
