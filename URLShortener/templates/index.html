@@ -12,7 +12,9 @@
         <form action="." method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <input type="submit" class="btn btn-success btn-lg" value="Generate" />
+            <div class="row justify-content-md-center">
+                <input type="submit" class="btn btn-primary btn-lg" value="Generate" />
+            </div>
         </form>
     </div>
 </div>

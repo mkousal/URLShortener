@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from shortener.views import home_view, redirector
+from shortener.views import home_view, redirector, success_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
+    path('success/<short_url>/', success_view, name='success-view'),
     path('<str:short_url>/', redirector),
 ]

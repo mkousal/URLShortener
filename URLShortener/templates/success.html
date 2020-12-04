@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}ShURL - New link created{% endblock %}
+{% block content %}
+
+<div class="container d-flex justify-content-md-center">
+    <h1>New link created!</h1>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <h3>The following link:</h3><br>
+    </div>
+    <div class="row justify-content-md-center">
+        <p>{{ data.long_url }}</p>
+    </div>
+    <div class="row justify-content-md-center">
+        <h3>Was shortened to:</h3><br>
+    </div>
+    <div class="row justify-content-md-center">    
+        <p>{{ data.short_url }}</p>
+    </div>
+</div>
+
+{% endblock %}
