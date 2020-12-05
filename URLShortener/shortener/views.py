@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpRequest
 from .forms import LinkGenerateForm
 from .shorty import generate_short_url
 from .models import URL
@@ -27,7 +28,9 @@ def redirector(request, short_url):
 
 def success_view(request, short_url):
     url = get_object_or_404(URL, short_url=short_url)
+    host = HttpRequest.get_host(request)
     context = {
         'data' : url,
+        'host' : host,
     }
     return render(request, 'success.html', context)

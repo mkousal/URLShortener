@@ -11,13 +11,13 @@
         <h3>The following link:</h3><br>
     </div>
     <div class="row justify-content-md-center">
-        <p>{{ data.long_url }}</p>
+        <a href="{{ data.long_url }}">{{ data.long_url }}</a>
     </div>
     <div class="row justify-content-md-center">
         <h3>Was shortened to:</h3><br>
     </div>
     <div class="row justify-content-md-center">    
-        <p>{{ data.short_url }}</p>
+        <a href="http://{{ host }}/{{ data.short_url }}">{{ host }}/{{ data.short_url }}</a>
     </div>
 </div>
 
