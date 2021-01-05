@@ -5,6 +5,7 @@ from .shorty import generate_short_url
 from .models import URL
 from .forms import CustomUserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 # Create your views here.
@@ -14,7 +15,11 @@ def home_view(request):
     if form.is_valid():
         long_url = form.cleaned_data['long_url']
         short_url = generate_short_url()
-        m = URL(short_url=short_url, long_url=long_url)
+        if request.user.is_authenticated:
+            user = request.user
+        else:
+            user = None
+        m = URL(short_url=short_url, long_url=long_url, user=user)
         m.save()
         form = LinkGenerateForm()
         return redirect('success-view', short_url=short_url)
