@@ -9,9 +9,3 @@ def generate_short_url():
         if not URL.objects.filter(short_url=short_url).exists():
             break
     return short_url
-
-# def create_short_url(url):
-#     short_url = generate_short_url()
-#     m = URL(short_url=short_url, long_url=url)
-#     m.save()
-#     return short_url

@@ -3,6 +3,9 @@ from django.http import HttpRequest
 from .forms import LinkGenerateForm
 from .shorty import generate_short_url
 from .models import URL
+from .forms import CustomUserCreationForm
+from django.contrib.auth import login
+from django.urls import reverse
 
 # Create your views here.
 
@@ -34,3 +37,13 @@ def success_view(request, short_url):
         'host' : host,
     }
     return render(request, 'success.html', context)
+
+def register(request):
+    if request.method == "GET":
+        return render(request, 'registration/register.html', {"form": CustomUserCreationForm})
+    elif request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(reverse("home"))
