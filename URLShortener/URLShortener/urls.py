@@ -24,6 +24,6 @@ urlpatterns = [
     path('success/<short_url>/', success_view, name='success-view'),
     path('accounts/', include('django.contrib.auth.urls')), 
     path('register/', register, name='register'),
-    path('profile/', profile),
+    path('profile/', profile, name='profile'),
     path('<str:short_url>/', redirector),
 ]

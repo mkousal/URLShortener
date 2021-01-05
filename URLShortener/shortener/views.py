@@ -56,6 +56,8 @@ def register(request):
             return redirect(reverse("home"))
 
 def profile(request):
+    if not request.user.is_authenticated:
+        return render(request, "empty_profile.html")
     url = URL.objects.filter(user=request.user)
     context = {
         'url' : url,
