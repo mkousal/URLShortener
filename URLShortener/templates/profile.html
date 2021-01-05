@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>User profile</h2>
+
+<h3>Links created:</h3>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Full URL</th>
+            <th>Short URL</th>
+            <th>Date created</th>
+            <th>Total clicks</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for instance in url %}
+        <tr>
+            <td>{{ instance.long_url }}</td>
+            <td>{{ instance.short_url }}</td>
+            <td>{{ instance.date }}</td>
+            <td>{{ instance.clicks }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'home' %}">Back to homepage</a>
+{% endblock %}

@@ -15,10 +15,12 @@ def home_view(request):
     if form.is_valid():
         long_url = form.cleaned_data['long_url']
         short_url = generate_short_url()
-        if request.user.is_authenticated:
+
+        if request.user.is_authenticated:   # If user is logged in, get id, else set DB entry to NULL
             user = request.user
         else:
             user = None
+
         m = URL(short_url=short_url, long_url=long_url, user=user)
         m.save()
         form = LinkGenerateForm()
@@ -52,3 +54,10 @@ def register(request):
             user = form.save()
             login(request, user)
             return redirect(reverse("home"))
+
+def profile(request):
+    url = URL.objects.filter(user=request.user)
+    context = {
+        'url' : url,
+    }
+    return render(request, "profile.html", context)

@@ -14,4 +14,4 @@ class URL(models.Model):
         app_label = 'shortener'
 
     def __str__(self):
-        return "%s" % (self.pk)
+        return "%s %s %s %s" % (self.pk, self.long_url, self.date, self.clicks)
