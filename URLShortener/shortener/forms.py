@@ -3,7 +3,7 @@ from .models import URL
 from django.contrib.auth.forms import UserCreationForm
 
 class LinkGenerateForm(forms.ModelForm):
-    long_url = forms.URLField(max_length=2048, label="Full URL")
+    long_url = forms.URLField(max_length=2048, label="")
 
     class Meta:
         model = URL
