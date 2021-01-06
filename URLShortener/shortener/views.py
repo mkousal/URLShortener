@@ -63,3 +63,27 @@ def profile(request):
         'url' : url,
     }
     return render(request, "profile.html", context)
+
+def edit_record(request, pk):
+    form = LinkGenerateForm()
+    obj = get_object_or_404(URL, pk=pk)
+    form = LinkGenerateForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+        return redirect('../../')
+    context = {
+        'form' : form
+    }
+    return render(request, "edit.html", context)
+
+def remove_record(request, pk):
+    obj = get_object_or_404(URL, pk=pk)
+    if request.method == 'POST' and request.POST.get('Yes') == 'Yes':
+        URL.objects.filter(pk=pk).delete()
+        return redirect('../../')
+    elif request.POST.get('No') == 'No':
+        return redirect('../../')
+    context = {
+        'object' : obj
+    }
+    return render(request, "delete.html", context)

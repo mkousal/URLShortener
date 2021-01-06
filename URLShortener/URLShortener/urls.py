@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import path, include
-from shortener.views import home_view, redirector, success_view, register, profile
+from shortener.views import home_view, redirector, success_view, register, profile, edit_record, remove_record
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')), 
     path('register/', register, name='register'),
     path('profile/', profile, name='profile'),
+    path('profile/<str:pk>/edit/', edit_record),
+    path('profile/<str:pk>/delete/', remove_record),
     path('<str:short_url>/', redirector),
 ]

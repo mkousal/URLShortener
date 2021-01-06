@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="." method="POST">
+    {% csrf_token %}
+    <h1>Do you wish to remove {{ object.short_url }}?</h1>
+    <p><input type='submit' name="Yes" value="Yes" /> <input type="submit" name="No" value="No" /></p>
+</form>
+
+{% endblock %}

@@ -12,6 +12,7 @@
             <th>Short URL</th>
             <th>Date created</th>
             <th>Total clicks</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,10 @@
             <td>{{ instance.short_url }}</td>
             <td>{{ instance.date }}</td>
             <td>{{ instance.clicks }}</td>
+            <td>
+                <a class="btn btn-warning" href="{{ instance.pk }}/edit/">Edit</a>
+                <a class="btn btn-danger" href="{{ instance.pk }}/delete/">Remove</a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
