@@ -1,35 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>User profile</h2>
+<!-- <header>&nbsp;</header>
+<section class="page-section portfolio">
+    <div class="container"> -->
+        <h2 class="page-section-heading">User profile</h2>
 
-<h3>Links created:</h3>
-<br>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Full URL</th>
-            <th>Short URL</th>
-            <th>Date created</th>
-            <th>Total clicks</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for instance in url %}
-        <tr>
-            <td>{{ instance.long_url }}</td>
-            <td>{{ instance.short_url }}</td>
-            <td>{{ instance.date }}</td>
-            <td>{{ instance.clicks }}</td>
-            <td>
-                <a class="btn btn-warning" href="{{ instance.pk }}/edit/">Edit</a>
-                <a class="btn btn-danger" href="{{ instance.pk }}/delete/">Remove</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <h3>Links created:</h3>
+        <br>
 
-<a href="{% url 'home' %}">Back to homepage</a>
+            <table class="table table-hover">
+                <div class="table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Full URL</th>
+                        <th scope="col">Short URL</th>
+                        <th scope="col">Date created</th>
+                        <th scope="col">Total clicks</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in url %}
+                    <tr>
+                        <td><a href="{{ instance.long_url }}">{{ instance.long_url }}</a></td>
+                        <td><a href="http://{{ host }}/{{ instance.short_url }}">{{ host }}/{{ instance.short_url }}</a></td>
+                        <td>{{ instance.date }}</td>
+                        <td>{{ instance.clicks }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ instance.pk }}/edit/">Edit</a>
+                            <a class="btn btn-danger" href="{{ instance.pk }}/delete/">Remove</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </div>
+            </table>
+
+        <a href="{% url 'home' %}">Back to homepage</a>
+    <!-- </div>
+</section> -->
 {% endblock %}

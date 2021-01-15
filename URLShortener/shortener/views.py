@@ -59,8 +59,10 @@ def profile(request):
     if not request.user.is_authenticated:
         return render(request, "empty_profile.html")
     url = URL.objects.filter(user=request.user)
+    host = HttpRequest.get_host(request)
     context = {
         'url' : url,
+        'host' : host,
     }
     return render(request, "profile.html", context)
 

@@ -12,8 +12,7 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li> -->
                 {% if user.is_authenticated %}
-                    <li class="nav-item mx-0 mx-lg-1">User: {{ user.get_username }}</li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'profile' %}">Profile</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'profile' %}">Profile <span style="text-transform: none;">({{user.get_username }})</class></a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'password_change' %}">Change password</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
                 {% else %}
