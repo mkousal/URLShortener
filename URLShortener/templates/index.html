@@ -1,23 +1,67 @@
-{% extends 'base.html' %}
+{% extends 'base_index.html' %}
 {% load crispy_forms_tags %}
 {% block title%}ShURL - Shorten your URLs with easy!{% endblock %}
 {% block content %}
 
-<div class="container d-flex justify-content-md-center">
-<h1>ShURL - Shorten your URLs with easy!</h1>
-</div>
-
-<div class="container">
-    <div class="row justify-content-md-center">
-        <form action="." method="POST">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <div class="row justify-content-md-center">
-                <input type="submit" class="btn btn-primary btn-lg" value="Generate" />
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <div class="mx-auto text-center">
+            <h1 class="masthead-heading mb-0">ShURL</h1>
+            <br/>
+            <p class="masthead-subheading font-weight-light mb-0">Shorten your URLs with easy!</p>
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
             </div>
-        </form>
-    </div>
-</div>
+            <h3>Start with typing your long address here:</h3>
+            <form action="." method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="row justify-content-md-center">
+                    <input type="submit" class="btn btn-xl btn-outline-light" value="Generate" />
+                </div>
+            </form>
 
+        </div>
+    </div>
+</header>
+
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-capitalize text-secondary mb-0">Why ShURL?</h2>
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center text-center text-secondary">
+
+            <ul class="list-group list-group-flush text-secondary mb-0">
+                <li class="list-group-item"><h4>Easy to use</h4></li>
+                <li class="list-group-item"><h4>Free registration</h4></li>
+                <li class="list-group-item"><h4>Unlimited links creation</h4></li>
+                <li class="list-group-item"><h4>Editable short links</h4></li>
+                <li class="list-group-item"><h4>Usage counter</h4></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="row">
+            <div class="ml-auto"><p class="lead">This project was created by Martin Kousal and Daniel Havránek as semestral work into the subject Computer programming 2 at Faculty of Electrical Engineering and Communication at Brno University of Technology</p></div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

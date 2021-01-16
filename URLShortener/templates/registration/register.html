@@ -2,11 +2,18 @@
 
 {% block content %}
 <h2>Register</h2>
-
+<style>
+    label, input {
+        display: block;
+    }
+    span.helptext {
+        display: none;
+    }
+</style>
 <form method="post">
     {% csrf_token %}
     {{form}}
-    <input type="submit" value="Register" class="btn btn-warning">
+    <input type="submit" value="Register" class="btn btn-lg btn-outline-dark btn-warning">
 </form>
 
 <a href="{% url 'login' %}">Back to login</a>

@@ -3,8 +3,8 @@
 
 <form action="." method="POST">
     {% csrf_token %}
-    <h1>Do you wish to remove {{ object.short_url }}?</h1>
-    <p><input type='submit' name="Yes" value="Yes" /> <input type="submit" name="No" value="No" /></p>
+    <h1>Do you wish to remove "{{ object.short_url }}"?</h1>
+    <p><input type='submit' name="Yes" value="Yes" class="btn btn-lg btn-outline-dark btn-danger" /> <input type="submit" name="No" value="No" class="btn btn-lg btn-outline-dark btn-warning" /></p>
 </form>
 
 {% endblock %}
