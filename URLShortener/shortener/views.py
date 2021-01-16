@@ -10,7 +10,7 @@ from django.urls import reverse
 
 # Create your views here.
 
-def home_view(request):
+def home_view(request): # view with main page
     form = LinkGenerateForm(request.POST or None)
     if form.is_valid():
         long_url = form.cleaned_data['long_url']
@@ -30,13 +30,13 @@ def home_view(request):
     }
     return render(request, 'index.html', context)
 
-def redirector(request, short_url):
+def redirector(request, short_url): # redirecting routine, when short URL is used, count up click entry in DB
     url = get_object_or_404(URL, short_url=short_url)
     url.clicks += 1
     url.save()
     return redirect(url.long_url)
 
-def success_view(request, short_url):
+def success_view(request, short_url):   # view after successful creating of short link
     url = get_object_or_404(URL, short_url=short_url)
     host = HttpRequest.get_host(request)
     context = {
@@ -45,7 +45,7 @@ def success_view(request, short_url):
     }
     return render(request, 'success.html', context)
 
-def register(request):
+def register(request):  # view for new user registration
     if request.method == "GET":
         return render(request, 'registration/register.html', {"form": CustomUserCreationForm})
     elif request.method == "POST":
@@ -55,7 +55,7 @@ def register(request):
             login(request, user)
             return redirect(reverse("home"))
 
-def profile(request):
+def profile(request):   # view for profile with show of user links
     if not request.user.is_authenticated:
         return render(request, "empty_profile.html")
     url = URL.objects.filter(user=request.user)
@@ -66,7 +66,7 @@ def profile(request):
     }
     return render(request, "profile.html", context)
 
-def edit_record(request, pk):
+def edit_record(request, pk):   # view when editting URL links
     form = LinkGenerateForm()
     obj = get_object_or_404(URL, pk=pk)
     form = LinkGenerateForm(request.POST or None, instance = obj)
@@ -78,7 +78,7 @@ def edit_record(request, pk):
     }
     return render(request, "edit.html", context)
 
-def remove_record(request, pk):
+def remove_record(request, pk): # view for accepting URL removing from DB
     obj = get_object_or_404(URL, pk=pk)
     if request.method == 'POST' and request.POST.get('Yes') == 'Yes':
         URL.objects.filter(pk=pk).delete()
